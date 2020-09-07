@@ -10,17 +10,19 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { firebaseConfig } from '../environments/environment';
+// import { firebaseConfigProd } from '../environments/environment.prod';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule} from '@angular/fire/storage';
-import { AngularFirestoreModule, AngularFirestore } from "@angular/fire/firestore"; 
+import { AngularFirestoreModule } from "@angular/fire/firestore"; 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    // AngularFireModule.initializeApp(firebaseConfigProd),
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFirestoreModule

@@ -51,9 +51,9 @@ export class UploadPage implements OnInit {
     if (this.imageUrl || !this.imageUrl) {
       this.file = event.target.files[0];
       const n = Date.now();
-      const filePath = `RoomsImages/${n}`;
+      const filePath = `EnsoImages/${n}`;
       const fileRef = this.storage.ref(filePath);
-      const task = this.storage.upload(`RoomsImages/${n}`, this.file);
+      const task = this.storage.upload(`EnsoImages/${n}`, this.file);
 
       task
         .snapshotChanges()

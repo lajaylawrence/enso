@@ -1,0 +1,33 @@
+<ion-content>
+
+  <div class="container">
+
+  <div> <img class="somnn" src="../../assets/asset1.png"/></div>
+
+  <div class="login-container">
+    <div class="login-container2">
+    <span class="title">Login</span><br/>
+    <span class="text1 error">{{error}}</span> <br/>
+    <!-- first input  -->
+    
+      <input placeholder="Username" type="email" class="ion-text-center" [(ngModel)]="username"> <br/>
+      <input placeholder="Email" type="email" class="ion-text-center" [(ngModel)]="email">
+   
+      <br/>
+    <!-- second input  -->
+    <input placeholder="Password" type="password" class="ion-text-center" [(ngModel)]="password">
+
+    <br/> 
+
+    <ion-button expand="block" shape="round" color="primary" (click)="login()">Login</ion-button>
+
+    <a class="text1" (click)="resetPassword()">Forgot your password?</a> <br/>
+    <a class="text1" (click)="toRegister()">Register here</a>
+  </div>
+  </div>
+
+  <div> <img class="img2" src="../../assets/asset1.png" /></div>
+
+  </div>
+
+</ion-content>

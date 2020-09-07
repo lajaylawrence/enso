@@ -1,0 +1,21 @@
+<div class="search-container">
+  <ion-icon name="search"></ion-icon>
+  <input placeholder="Search"/>
+</div>
+
+<ion-icon class="close" name="close" (click)="dismiss()"></ion-icon>
+
+<div class="search-results">
+
+  
+    <div class="suggestions" *ngFor="let results of suggestions">
+      <ion-avatar slot="start" class="suggested-img">
+        <img src="../../assets/profile-img.jpg">
+      </ion-avatar>
+  
+      <span>suggestions</span> <br />
+    </div>
+  
+
+
+</div>

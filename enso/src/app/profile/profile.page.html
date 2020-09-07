@@ -1,0 +1,57 @@
+<ion-content>
+
+  <div class="toolbar">
+
+    <img class="logo" src="../../assets/logo1.png"  />
+
+    <span class="hov {{hide2}}" (click)="goToFeed()"><ion-icon name="chevron-back-outline" (click)="nav()"></ion-icon>
+       Feed</span>
+
+    <ion-title class="ion-text-center">Portfolio</ion-title>
+
+    <ion-icon class="settings {{hide}}" name="cog" (click)="nav()"></ion-icon>
+
+    
+  </div>
+
+
+  <div class="container1-profile">
+
+    <!-- header -->
+    <div class="container2-profile">
+      <ion-avatar>
+        <img src="{{profileImg}}">
+      </ion-avatar>
+    
+
+    <div class="header-text">
+      {{firstName}} <span class="last-name">{{lastName}}</span> <br/>
+      <span class="portfolio-name">@{{username}}</span> <br/>
+      <ion-button class="edit {{hide}}" (click)="editModal()" > Edit </ion-button>
+      <!-- <span class="description"> {{profileDescription}}</span> -->
+    </div>
+
+    </div>
+
+
+    <!-- posts -->
+    <div class="container3-profile" >
+
+      {{error}}
+ 
+       <div *ngFor="let post of posts">
+         
+        <div (click)="goToPost(post)" class="post-img" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/enso-4864f.appspot.com/o/{{post}}');"></div>
+
+       </div>
+
+      <div class="post-img-add {{hide}}" (click)="uploadModal()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</ion-content>

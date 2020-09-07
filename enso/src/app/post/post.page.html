@@ -1,0 +1,60 @@
+<ion-content>
+
+  <div class="toolbar">
+
+    <img class="logo" src="../../assets/logo1.png" />
+
+  
+   
+  
+
+    <ion-title class="ion-text-center">Post</ion-title>
+
+  <!-- <img class="menu ion-float-right" src="../../assets/menu.png"  (click)="goToProfile()" /> -->
+  <ion-back-button class="back" slot="icon-only" name="chevron-back-outline" defaultHref="/feed" (click)="goBack()"></ion-back-button>
+   
+  </div>
+
+
+  <div class="container1-profile">
+
+    <!-- img -->
+    <div class="container2-post">
+
+      <ion-avatar>
+        <img *ngIf="postId" src="https://firebasestorage.googleapis.com/v0/b/enso-4864f.appspot.com/o/{{postId}}">
+      </ion-avatar>
+      <div class="shadow"></div>
+      
+     <span class="img-title"> {{workTitle}} </span>
+
+     <div class="likes">
+       {{likes}}
+      <ion-icon class="{{hide2}}" name="{{heartType}}" (click)="like()"></ion-icon>
+
+     </div>
+
+    </div>
+
+   
+
+
+    <!-- description -->
+    <div class="container3-post">
+     
+      <div class="description"> 
+        <ion-button class="trash {{hide}}" (click)="delete()">
+          <ion-icon  name="trash-outline"></ion-icon>
+        </ion-button>
+        <span class="img-author" (click)="goToProfile()">
+       {{authorName}} </span><br/>
+        {{description}} {{error}}
+      
+      </div>
+
+       </div>
+
+  </div>
+
+
+</ion-content>

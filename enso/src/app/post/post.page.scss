@@ -1,0 +1,234 @@
+
+// small screens
+// toolbar================================================
+.toolbar {
+    background: linear-gradient(270deg, rgba(15,150,153,1) 3%, rgba(25,183,171,1) 100%);
+    position: relative;
+    top: 0px;
+    height: 10% !important;
+    box-shadow: 0px 1px 10px -5px grey;
+}
+
+ion-title {
+    --color: white;
+    padding: 20px;
+}
+
+
+.logo {
+    position: absolute;
+    height: 55px;
+    width: 75px;
+    top: 5px;
+}
+
+.back {
+    position: absolute;
+    right: 5px;
+    top:3px;
+    color: white;
+    zoom: 1.5;
+}
+
+.back:hover{
+    opacity: 0.5;
+}
+
+
+
+// body
+
+.container1-profile {
+   
+    min-height: 100%;
+    width: 100%;
+
+    padding: 5px 20px auto;
+    background:     linear-gradient(180deg, rgba(255,255,255,1) 0%, rgb(194, 194, 194) 100%);
+
+}
+
+// img
+
+.container2-post {
+    height: 320px;
+    width: 350px;
+    background: url("../../assets/logo1.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px -80px 50px -50px rgb(24, 24, 24), -10px 0px 10px grey;
+    margin: 20px auto auto;
+    border-radius: 5px;
+    position: relative;
+}
+
+.img-title{
+  color: #06b4af;
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  font-size: 25px;
+}
+
+.likes {
+    color: #ffffff;
+  position: absolute;
+  bottom: 5px;
+  right: 35px;
+  font-size: 17px;
+}
+
+// description
+.container3-post {
+    
+    background: white;
+    width: 290px;
+    min-height: 50px;
+    margin: 40px auto auto ;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: -10px 0px 10px grey;
+    position: relative;
+
+}
+
+.description {
+    color: #016364;
+    font-size: 13px;
+
+}
+
+.img-author {
+    font-size: 17px;
+    font-style: italic;
+}
+
+.img-author:hover {
+    color: #06b4af;
+}
+
+ion-avatar {
+    --border-radius: 5px !important;
+    width: 100%;
+    height: 100%;
+    
+}
+.shadow {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0px -80px 50px -50px rgb(24, 24, 24)!important;
+}
+
+.trash{
+    position: absolute;
+    
+    right: -10px;
+    top: -10px;
+    padding: 0px;
+}
+
+.trash > ion-icon {
+    zoom: 1;
+}
+
+// large screens =========================================
+@media only screen and (orientation: landscape) {
+  
+    //toolbar 
+.toolbar {
+    height: 14% !important;
+}
+
+ion-title {
+    font-size: 10px !important;
+    padding: 5px;
+}
+
+
+.logo {
+    
+    height: 18px;
+    width: 25px;
+    top: 1px;
+}
+
+.back{
+    zoom: 0.5;
+}
+
+
+
+// img
+
+.container2-post {
+    height: 150px;
+    width: 200px;
+
+}
+
+.img-title{
+
+  bottom: 5px;
+  left: 10px;
+  font-size: 10px;
+}
+
+.likes {
+
+  bottom: 5px;
+  right: 10px;
+  font-size: 5px;
+}
+
+// description
+.container3-post {
+    
+    background: white;
+    width: 150px;
+    min-height: 30px;
+    margin: 10px auto auto ;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: -10px 0px 10px grey;
+
+}
+
+.description {
+    color: #016364;
+    font-size: 5px;
+
+}
+
+.img-author {
+    font-size: 10px;
+    font-style: italic;
+}
+
+.trash{
+    position: absolute;
+    --background: rgba(255, 0, 0, 0) !important;
+    --box-shadow: none !important;
+    
+}
+
+.trash > ion-icon {
+    zoom: 0.5;
+    color: #016364;
+    
+    
+}
+
+
+
+
+}
+
+.hide {
+    display: none !important;
+}
+
+.hide2 {
+    display: none !important;
+}

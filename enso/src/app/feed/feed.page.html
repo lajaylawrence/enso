@@ -1,0 +1,77 @@
+
+
+<ion-content>
+
+  <div class="toolbar">
+
+        <img class="logo" src="../../assets/logo1.png"/>
+  
+        <ion-title class="ion-text-center">Feed</ion-title>
+
+        <ion-icon class="search" name="search-circle-outline" (click)="searchModal()"></ion-icon>
+        
+        <img class="menu ion-float-right" src="../../assets/menu.png" (click)="goToProfile()" />
+  </div>
+
+
+  <div class="container1">
+    <!-- column 1 -->
+    <div class="column1 column"> 
+      <div class="profile-header"></div>
+
+      <ion-avatar class="profile-img">
+        <img src="{{profileImg}}">
+      </ion-avatar>
+
+      <div class="profile-name"> {{firstName}} <b>{{lastName}}</b> <br/>
+        <span class="profile-title">@{{username}}</span>
+      </div>
+
+      <div class="profile-link" (click)="goToProfile()"> Go to profile <ion-icon name="arrow-forward-circle-outline"></ion-icon></div>
+      
+      
+    </div>
+
+    <!-- column 2 -->
+    <div class="column2 column">
+     <div class="posts-header">New posts <ion-icon class="ion-float-right" name="ellipsis-horizontal"></ion-icon></div>
+
+     <div class="posts" *ngFor="let post of posts">
+      
+      
+      <ion-avatar class="feed-post" (click)="goToPost(post.img)">
+        <img class="feed-post-img" src="https://firebasestorage.googleapis.com/v0/b/enso-4864f.appspot.com/o/{{post.img}}">
+        <div class="shadow"></div>
+
+        <span class="author"> {{post.author}}</span>
+      </ion-avatar> 
+      
+
+     </div>
+
+    </div>
+
+    <!-- column 3 -->
+    <div class="column3 column">
+
+       <div class="posts-header suggestions">Meet New People <ion-icon class="ion-float-right" name="ellipsis-horizontal"></ion-icon></div>
+    
+
+  <div *ngFor="let suggestion of suggestions">
+
+    <div class="suggestions suggestion-hov" (click)="goToSuggestion(suggestion.suggestionUsername)">
+      <ion-avatar slot="start" class="suggested-img">
+        <img src="{{suggestion.suggestionImg}}">
+      </ion-avatar>
+      
+      <span>@{{suggestion.suggestionUsername}} <br/> <span class="suggestion-text">Click a user to view their profile</span></span> <br/>
+    </div>
+  </div>
+
+  </div>
+
+
+  </div>
+
+
+</ion-content>

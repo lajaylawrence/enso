@@ -1,0 +1,38 @@
+<ion-content>
+
+  <div class="container">
+
+    <div> <img class="img" src="../../assets/asset1.png" /></div>
+
+    <div class="login-container">
+      <div class="login-container2">
+
+        <span class="title">Edit Profile</span><br />
+        <span class="text1 error ion-text-center">{{error}}</span> <br />
+        <ion-icon class="close" name="close" (click)="dismiss()"></ion-icon>
+
+        <!-- image display -->
+        <img class="displayImage" *ngIf="displayUrl"
+          src="https://firebasestorage.googleapis.com/v0/b/enso-4864f.appspot.com/o/{{displayUrl}}" />
+
+        <!-- first input  -->
+        <input type="file" id="file" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off" hidden
+          #input />
+        <ion-button class="button1 button2" (click)="selectImage()" size="small" expand="block" shape="round"> Profile Image</ion-button>
+        <br />
+
+        <!-- second input  -->
+        <input placeholder="Enter full name" type="text" class="ion-text-center" [(ngModel)]="profileName" />
+
+        <br />
+
+        <ion-button class="button1 " size="small" expand="block" shape="round" color="secondary" (click)="upload()"> Save Changes </ion-button>
+
+      </div>
+    </div>
+
+    <div> <img class="img img2" src="../../assets/asset1.png" /></div>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,249 @@
+// wide screen
+@media only screen and (orientation: landscape) {
+   
+   .container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px !important;
+    margin: 0px !important;
+    max-height: 100%;
+    min-width: 100%;
+     
+
+    
+}
+
+    .login-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    margin: 10px -10px auto;
+    padding: 10px 0;
+    min-width: 70%;
+    min-height: 90vh;
+    box-shadow: 0px 0px 10px grey;
+    border-radius: 10px;
+    color: #07a5a0;
+    font-size: 100%;
+    text-align: center;
+    
+    
+}
+.login-container2 {
+    line-height: 5px;
+}
+
+
+
+.text1 {
+    font-size: 30%;
+    text-decoration: underline;
+    
+}
+
+
+
+
+.img {
+    
+    width: 40px;
+    transform: rotate(0deg) scale(0.50);
+    
+    display: block;
+    margin: auto ;
+}
+
+.img2 {
+    transform: rotate(180deg) scale(0.50);
+  
+}
+
+
+input {
+  font-size: 40%;
+  outline: 0;
+  border-width: 0 0 0.5px;
+  border-color: rgb(187, 187, 187);
+  margin: 15px auto auto;
+}
+input:focus {
+  border-color: #07a5a0;
+}
+
+.displayImage {
+    position: relative;
+    max-width: 70%;
+    max-height: 90vh;
+    margin: 10px auto auto;
+}
+
+.button1{
+    --padding: 5px !important;
+    margin: 10px auto auto !important;
+    max-width: 90px;
+
+    --background: white !important;
+    font-size: 5px;
+}
+
+.button2 {
+
+    --color: #07a5a0;
+}
+
+.error {
+  color: red;
+  position: relative;
+  margin: 0px;
+  top: 6px;
+  
+}
+
+.close {
+    
+    top: 10px;
+    right: 10px;
+    zoom: 0.5;
+}
+
+}
+
+
+
+// small screen
+@media only screen and (orientation: portrait) {
+   
+   .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px !important;
+    margin: 0px !important;
+    max-height: 100%;
+    min-width: 100%;
+     
+
+    
+}
+
+    .login-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    margin: -79px auto -79px;
+    padding: auto 0;
+    min-width: 70%;
+    min-height: 90vh;
+    box-shadow: 0px 0px 10px grey;
+    border-radius: 10px;
+    color: #07a5a0;
+    font-size: 100%;
+    text-align: center;
+    
+    
+}
+
+.title {
+    
+    font-size: 150% !important;
+}
+
+
+.login-container2 {
+    line-height: 10px;
+}
+
+.text1 {
+    font-size: 50%;
+    text-decoration: underline;
+    
+}
+
+
+.img {
+    
+    width: 40px;
+    transform: rotate(90deg) scale(1);
+    display: block;
+    margin: auto ;
+}
+
+.img2 {
+    transform: rotate(270deg) scale(1);
+  
+}
+
+
+input {
+  font-size: 70%;
+  outline: 0;
+  border-width: 0 0 1px;
+  border-color: rgb(187, 187, 187);
+  margin: 25px auto 10px;
+}
+input:focus {
+  border-color: #07a5a0;
+}
+
+.displayImage {
+    height: 300px ;
+    margin: 20px auto 20px;
+}
+
+.button1{
+    --padding: 5px !important;
+    margin: 10px auto auto !important;
+    width: 170px;
+    --background: white !important;
+}
+
+.button2 {
+
+    --color: #07a5a0;
+}
+
+.error {
+  color: red;
+  position: relative;
+  top: 5px;
+}
+
+    }
+
+
+    // general styling =====================
+::placeholder {
+  color: rgb(187, 187, 187);
+}
+
+
+
+a:link {
+  color: #004450;
+}
+a:visited {
+  color: #004450;
+}
+a:hover {
+  color: #00ebd7;
+}
+a:active {
+  color: #00242b;
+}
+
+.close {
+    color: grey;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    zoom: 1.5;
+}
+
+.close:hover {
+    color: rgb(58, 58, 58);
+}

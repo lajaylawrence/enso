@@ -1,0 +1,18 @@
+//tribal2----------------------------------------
+:root {
+    /*tribal2 moved here*/
+  --ion-color-tribal2: #ff6055;
+  --ion-color-tribal2-rgb: 56, 128, 255;
+  --ion-color-tribal2-contrast: #ffffff;
+  --ion-color-tribal2-contrast-rgb: 255, 255, 255;
+  --ion-color-tribal2-shade: #ff774e;
+  --ion-color-tribal2-tint: #4c8dff;
+}
+.ion-color-tribal2 {
+    --ion-color-base: var(--ion-color-tribal2) !important;
+    --ion-color-base-rgb: var(--ion-color-tribal2-rgb) !important;
+    --ion-color-contrast: var(--ion-color-tribal2-contrast) !important;
+    --ion-color-contrast-rgb: var(--ion-color-tribal2-contrast-rgb) !important;
+    --ion-color-shade: var(--ion-color-tribal2-shade) !important;
+    --ion-color-tint: var(--ion-color-tribal2-tint) !important;
+}

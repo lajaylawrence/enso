@@ -1,0 +1,25 @@
+<div class="search-container">
+  <ion-icon name="search"></ion-icon>
+  <input placeholder="Search" (input)="search($event)"/>
+</div>
+
+<ion-icon class="close" name="close" (click)="dismiss()"></ion-icon>
+
+<div class="search-results">
+
+
+  <div *ngFor="let search of searches" >
+
+    <div class="suggestions suggestion-hov" (click)="goToSearch(search.searchUsername)">
+    <ion-avatar slot="start" class="suggested-img">
+      <img src="{{search.searchImg}}">
+    </ion-avatar>
+
+    <span>{{search.searchUsername}}</span> <br />
+    </div>
+
+  </div>
+
+
+
+</div>

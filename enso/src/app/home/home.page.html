@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+ 
+
+  <form>
+  
+    <input type="file" id="file" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off" hidden #input/>
+  
+
+  <ion-button (click)="selectImage()" color="warning">select image</ion-button>
+
+  <ion-button (click)="upload()">upload</ion-button>
+  </form>
+  {{url}}
+  
+</ion-content>

@@ -3,6 +3,7 @@ import { ModalController } from "@ionic/angular";
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import {BreakpointObserver, Breakpoints, BreakpointState } from "@angular/cdk/layout";
 
 @Component({
   selector: "app-search",
@@ -16,7 +17,8 @@ export class SearchPage implements OnInit {
 
   constructor(public modalCtrl: ModalController,
               private afStore: AngularFirestore,
-              private router: Router) {}
+              private router: Router,
+              public breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {
 
@@ -94,7 +96,16 @@ export class SearchPage implements OnInit {
 
   goToSearch(sUsername){
     this.dismiss();
-    this.router.navigate(['/profile/' + sUsername]);
+    
+    this.breakpointObserver
+              .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
+              .subscribe((state: BreakpointState) => {
+                if (state.matches) {
+                  this.router.navigate(["/tabs/profile/" + sUsername]);
+                } else {
+                  this.router.navigate(["/profile/" + sUsername]);
+                }
+              });
   }
 
   dismiss() {

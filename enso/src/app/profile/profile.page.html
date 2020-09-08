@@ -4,13 +4,16 @@
 
     <img class="logo" src="../../assets/logo1.png"  />
 
-    <span class="hov {{hide2}}" (click)="goToFeed()"><ion-icon name="chevron-back-outline" (click)="nav()"></ion-icon>
-       Feed</span>
+
 
     <ion-title class="ion-text-center">Portfolio</ion-title>
 
     <ion-icon class="settings {{hide}}" name="cog" (click)="nav()"></ion-icon>
 
+    <!-- {{hide2}} -->
+    <span class="hov " (click)="goBack()">
+      <ion-icon name="chevron-back-outline" ></ion-icon>
+    </span>
     
   </div>
 
@@ -53,5 +56,6 @@
 
   </div>
 
+<div class="preloader" *ngIf="busy">ENSO.COM<img src="../../assets/preloader.gif" /></div>
 
 </ion-content>

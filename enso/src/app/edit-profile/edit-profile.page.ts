@@ -52,11 +52,12 @@ export class EditProfilePage implements OnInit {
     }
 
     if (this.imageUrl || !this.imageUrl) {
+      this.imageUrl = "../../assets/preloader.gif";
       this.file = event.target.files[0];
       const n = Date.now();
-      const filePath = `RoomsImages/${n}`;
+      const filePath = `EnsoImages/${n}`;
       const fileRef = this.storage.ref(filePath);
-      const task = this.storage.upload(`RoomsImages/${n}`, this.file);
+      const task = this.storage.upload(`EnsoImages/${n}`, this.file);
 
       task
         .snapshotChanges()
@@ -84,9 +85,19 @@ export class EditProfilePage implements OnInit {
   // upload to firestore
   upload() {
     this.error=""
-    try{
     // getting users id from service to access their databse
     const uid = this.user.getUID();
+
+    if (this.imageUrl) {
+      if (!this.profileName) {
+        
+        this.afStore.doc(`users/${uid}`).update({
+          profileImg: this.displayUrl, // store each image id inside an array called posts so we can use it as post id as well
+        });
+
+      } else {
+    try{
+    
     // adding files to users databse-----------------------
     this.afStore.doc(`users/${uid}`).update({
       profileImg: this.displayUrl, // store each image id inside an array called posts so we can use it as post id as well
@@ -95,6 +106,17 @@ export class EditProfilePage implements OnInit {
   } catch (err){
     this.error = err.message;
   }
+
+      }
+
+    } else if (this.profileName){
+      this.afStore.doc(`users/${uid}`).update({
+        profileName: this.profileName
+      });
+
+    }else {
+      this.error = " you need to select an image";
+    }
 
    if(this.error == ""){
     this.dismiss();

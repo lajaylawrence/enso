@@ -5,7 +5,7 @@
     background: linear-gradient(270deg, rgba(15,150,153,1) 3%, rgba(25,183,171,1) 100%);
     position: relative;
     top: 0px;
-    height: 10% !important;
+    height: 60px !important;
     box-shadow: 0px 1px 10px -5px grey;
 }
 
@@ -25,9 +25,9 @@ ion-title {
 .back {
     position: absolute;
     right: 5px;
-    top:3px;
+    top:8px;
     color: white;
-    zoom: 1.5;
+    zoom: 2;
 }
 
 .back:hover{
@@ -135,10 +135,13 @@ ion-avatar {
 
 // large screens =========================================
 @media only screen and (orientation: landscape) {
+    .container1-profile{
+        zoom: 400%;
+    }
   
     //toolbar 
 .toolbar {
-    height: 14% !important;
+    height: 20px !important;
 }
 
 ion-title {
@@ -156,6 +159,7 @@ ion-title {
 
 .back{
     zoom: 0.5;
+    top: 10px;
 }
 
 

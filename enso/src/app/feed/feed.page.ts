@@ -23,6 +23,7 @@ export class FeedPage implements OnInit {
   username = "username";
   firstName = "Your";
   lastName = "Name";
+  busy=true;
 
   // testing = "ntn";
 
@@ -35,6 +36,8 @@ export class FeedPage implements OnInit {
   ngOnInit() {
     this.getData();
   }
+
+  
 
   // // used to navigate based on screen size=====================
   // test() {
@@ -58,7 +61,7 @@ export class FeedPage implements OnInit {
       cssClass: "searchModal",
       swipeToClose: true,
       backdropDismiss: true,
-      showBackdrop: false,
+      
     });
     return await modal.present();
   }
@@ -66,13 +69,14 @@ export class FeedPage implements OnInit {
   async getData(){
 
     // getting posts
-    const userDb = await this.afStore.collection(`posts`).get() as Observable<any>;
-    userDb.subscribe(snapshot => {
-      const snap = snapshot.docs.reverse().slice(0, 11);
+    const userDb = await this.afStore.collection(`posts`).valueChanges() as Observable<any>;
+    userDb.forEach(docs => {
+      const snap = docs.reverse().slice(0, 11);
       snap.forEach(doc => {
-          this.posts.push({img: doc.id, author: doc.data().author});
+          this.posts.push({img: doc.imageUrl, author: doc.author});
           
         }) 
+        
       })
 
     // getting suggestions
@@ -95,10 +99,10 @@ export class FeedPage implements OnInit {
         }
 
         })
-        
+      setTimeout(()=>{this.busy = false;}, 2000);
     })
 
-
+    
     // getting profile info
     const userDb2 = await this.afStore.doc(`users/${this.user.getUID()}`);
 
@@ -116,20 +120,50 @@ export class FeedPage implements OnInit {
         this.firstName = fullName[0];
         this.lastName = fullName[1];
       }
+      
     });
+    
     
      }
 
     goToPost(postId) {
-    this.router.navigate(['/post/' + postId]);
+    
+
+        this.breakpointObserver
+      .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.router.navigate(['/tabs/post/' + postId]);
+        } else {
+          this.router.navigate(['/post/' + postId]);
+        }
+      });
   } 
 
   goToProfile(){
-    this.router.navigate(['/profile/' + this.user.getUsername()]);
+    
+            this.breakpointObserver
+      .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.router.navigate(['/tabs/profile/' + this.user.getUsername()]);
+        } else {
+          this.router.navigate(['/profile/' + this.user.getUsername()]);
+        }
+      });
   }
 
   goToSuggestion(sUsername){
-    this.router.navigate(['/profile/' + sUsername]);
+    
+      this.breakpointObserver
+      .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.router.navigate(['/tabs/profile/' + sUsername]);
+        } else {
+          this.router.navigate(['/profile/' + sUsername]);
+        }
+      });
   }
 
 }

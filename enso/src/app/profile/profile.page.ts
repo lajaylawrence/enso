@@ -5,19 +5,23 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from '../user.service';
 import { Observable } from 'rxjs';
 import { EditProfilePage } from '../edit-profile/edit-profile.page';
-import {
-  BreakpointObserver,
-  Breakpoints,
-  BreakpointState,
-} from '@angular/cdk/layout';
+import {BreakpointObserver, Breakpoints, BreakpointState, } from '@angular/cdk/layout';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
+import { InAppBrowser , InAppBrowserOptions } from '@ionic-native/in-app-browser';
+
+
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss'],
+  selector: "app-profile",
+  templateUrl: "./profile.page.html",
+  styleUrls: ["./profile.page.scss"],
 })
 export class ProfilePage implements OnInit {
+
+
+
   posts = [];
   subscribe;
   userProfileId;
@@ -25,11 +29,12 @@ export class ProfilePage implements OnInit {
   hide2;
   userProfile;
   error;
+  busy = true;
 
-  profileImg = '../../assets/profile-img.jpg';
-  firstName = 'Your';
-  lastName = 'Name';
-  username = 'username';
+  profileImg = "../../assets/profile-img.jpg";
+  firstName = "Your";
+  lastName = "Name";
+  username = "username";
 
   constructor(
     public modalController: ModalController,
@@ -37,43 +42,41 @@ export class ProfilePage implements OnInit {
     private user: UserService,
     public breakpointObserver: BreakpointObserver,
     private router: Router,
-    private route: ActivatedRoute
-  ) {
-
-
-  }
+    private route: ActivatedRoute,
+    private location: Location
+  ) {}
 
   ngOnInit() {
-    this.userProfileId = this.route.snapshot.paramMap.get('id');
+    this.userProfileId = this.route.snapshot.paramMap.get("id");
     this.userAuth();
     this.getData();
   }
 
   // checking user
   async userAuth() {
-    const userDb = await this.afStore.collection(`users`).get() as Observable<any>;
-    userDb.subscribe(snapshot => {
-      snapshot.docs
-        .forEach(doc => {
-          if (this.userProfileId === doc.data().userName) {
-            this.error = "";
-            if (this.user.getUser() !== undefined){
-
-              if (doc.id == this.user.getUID()) {
-                console.log('user is authenticated');
-              } else { this.hide = 'hide'; }
-
-            } else { this.hide2 = 'hide'; this.hide = 'hide'; }
-            
-
-          } 
-
-        });
+    const userDb = (await this.afStore.collection(`users`).get()) as Observable<
+      any
+    >;
+    userDb.subscribe((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        if (this.userProfileId === doc.data().userName) {
+          this.error = "";
+          if (this.user.getUser() !== undefined) {
+            if (doc.id == this.user.getUID()) {
+              console.log("user is authenticated");
+            } else {
+              this.hide = "hide";
+            }
+          } else {
+            this.hide2 = "hide";
+            this.hide = "hide";
+          }
+        }
+      });
     });
-    }
+  }
 
   async getData() {
-
     // updating page real time ---------------------------------------------------------------------
     // const userDb = await this.afStore.doc(`users/${this.user.getUID()}`);
 
@@ -93,42 +96,44 @@ export class ProfilePage implements OnInit {
     //   }
     // });
 
-    const userDb = await this.afStore.collection(`users`).valueChanges() as Observable<any>;
+    const userDb = (await this.afStore
+      .collection(`users`)
+      .valueChanges()) as Observable<any>;
     userDb.forEach((doc) => {
       doc.forEach((Doc) => {
         if (this.userProfileId == Doc.userName) {
-           this.userProfile = 'found';
-           
-           this.posts = Doc.posts;
-           this.username = Doc.userName;
+          this.userProfile = "found";
+          if(Doc.posts){
+          this.posts = Doc.posts.reverse();
+        }
+          this.username = Doc.userName;
 
-           if (Doc.profileImg) {
-               this.profileImg = `https://firebasestorage.googleapis.com/v0/b/enso-4864f.appspot.com/o/${Doc.profileImg}`;
-             }
+          if (Doc.profileImg) {
+            this.profileImg = `https://firebasestorage.googleapis.com/v0/b/enso-4864f.appspot.com/o/${Doc.profileImg}`;
+          }
 
-           if (Doc.profileName) {
-               const fullName = Doc.profileName.split(' ');
-               this.firstName = fullName[0];
-               this.lastName = fullName[1];
-             }
-         }
+          if (Doc.profileName) {
+            const fullName = Doc.profileName.split(" ");
+            this.firstName = fullName[0];
+            this.lastName = fullName[1];
+          }
+        }
       });
-      if (this.userProfile !== 'found') {
-       this.error = 'USER NOT FOUND';
-       this.hide = 'hide'; 
-       this.hide2 = "hide2";
-       }
-
-  });
-
-
+      if (this.userProfile !== "found") {
+        this.error = "USER NOT FOUND";
+        this.hide = "hide";
+        this.hide2 = "hide2";
+      }
+      setTimeout(()=>{this.busy = false;}, 1000);
+    });
+    
   }
 
   // edit modal
   async editModal() {
     const modal = await this.modalController.create({
       component: EditProfilePage,
-      cssClass: 'searchModal',
+      cssClass: "searchModal",
       swipeToClose: true,
       backdropDismiss: true,
       showBackdrop: true,
@@ -140,7 +145,7 @@ export class ProfilePage implements OnInit {
   async uploadModal() {
     const modal = await this.modalController.create({
       component: UploadPage,
-      cssClass: 'searchModal',
+      cssClass: "searchModal",
       swipeToClose: true,
       backdropDismiss: true,
       showBackdrop: true,
@@ -155,18 +160,44 @@ export class ProfilePage implements OnInit {
       .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
-          this.router.navigate(['/tabs/settings']);
+          this.router.navigate(["/tabs/settings"]);
         } else {
-          this.router.navigate(['/settings']);
+          this.router.navigate(["/settings"]);
         }
       });
   }
 
   goToPost(postId) {
-    this.router.navigate(['/post/' + postId]);
+    
+
+    this.breakpointObserver
+      .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.router.navigate(["/tabs/post/" + postId]);
+        } else {
+          this.router.navigate(["/post/" + postId]);
+        }
+      });
   }
 
   goToFeed() {
-    this.router.navigate(['/feed']);
+    
+    this.breakpointObserver
+      .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.router.navigate(["/tabs/feed"]);
+        } else {
+          this.router.navigate(["/feed"]);
+        }
+      });
+  }
+
+
+
+  goBack() {
+    // this.location.back();
+    this.goToFeed();
   }
 }

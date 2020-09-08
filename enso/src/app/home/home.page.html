@@ -1,23 +1,52 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true">
+
+
  
+  <div class="home-container1">
 
-  <form>
-  
-    <input type="file" id="file" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off" hidden #input/>
-  
+    
+    <div class="home-toolbar"> ENSO.COM</div>
+    
+   
+    <ion-avatar>
+      <img src="../../assets/home1.png">
+    </ion-avatar>
 
-  <ion-button (click)="selectImage()" color="warning">select image</ion-button>
+    <img class="home-logo" src="../../assets/home3.png" />
 
-  <ion-button (click)="upload()">upload</ion-button>
-  </form>
-  {{url}}
+    <img class="home-img-2" src="../../assets/home2.png"/>
+
+    <div class="home-text-1"> 
+      <span class="home-menu" (click)="goToAbout()">About</span> 
+      <span class="home-menu" (click)="goToLogin()">Login</span> 
+      <span class="home-menu" (click)="goToRegister()">Register</span></div>
+   
+
+    <div class="home-text-2"> Work On You</div>
+
+   
+
+    <div class="home-text-3"> <span class="mini-app-text1">Also checkout my animated website:</span> <br/> 
+    
+     <a href="https://lajaylawrence.github.io/mini-appolis/mini-appolis/"> <img src="../../assets/ma.png" class="mini-appolis" /></a>
+    
+    <br/> <span class="mini-app-text" >Also checkout my animated website</span>
+    </div>
+
+  </div>
+
+  <div class="home-container2" >
+
+      
+      <img src="../../assets/ui2.png" class="scroll-img home-2" />
+      <img src="../../assets/ui1.png" class="scroll-img home-1" />
+
+      <img class="container2-img" src="../../assets/home4.png">
+    
+      <div class="home-text-5" (click)="goToAbout()">Learn more...</div>
+  </div>
+  <div class="preloader" *ngIf="busy">ENSO.COM<img src="../../assets/preloader.gif" /></div>
   
 </ion-content>

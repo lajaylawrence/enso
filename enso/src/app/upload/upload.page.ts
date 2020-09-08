@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import {BreakpointObserver, Breakpoints, BreakpointState } from "@angular/cdk/layout";
 import { ModalController } from "@ionic/angular";
 
+
 @Component({
   selector: "app-upload",
   templateUrl: "./upload.page.html",
@@ -49,6 +50,7 @@ export class UploadPage implements OnInit {
     }
 
     if (this.imageUrl || !this.imageUrl) {
+      this.imageUrl = "../../assets/preloader.gif";
       this.file = event.target.files[0];
       const n = Date.now();
       const filePath = `EnsoImages/${n}`;
@@ -84,6 +86,20 @@ export class UploadPage implements OnInit {
   // upload to firestore
   upload() {
     this.error = "";
+
+    const myDate = new Date();
+    
+    const postDate = "" + myDate.getFullYear() + myDate.getMonth() + 
+                     myDate.getDate() + myDate.getHours() 
+                     + myDate.getMinutes() + myDate.getSeconds();
+
+
+    if(this.imageUrl){
+      if(!this.description){
+        this.error = "Please enter a description";
+      } else if(!this.title){
+        this.error = "Please enter a title";
+      }else {
     try{
     // getting users id from service to access their databse
     const uid = this.user.getUID();
@@ -98,7 +114,9 @@ export class UploadPage implements OnInit {
       description: this.description,
       likes: [],
       user: uid,
-      postTitle: this.title
+      postTitle: this.title,
+      imageUrl: this.displayUrl,
+      date: postDate
     });
   } catch(err){
     this.error = err.message;
@@ -107,6 +125,12 @@ export class UploadPage implements OnInit {
   if(this.error == ""){
     this.dismiss();
   }
+  
+}
+
+} else {
+  this.error = " you need to select an image"; 
+}
   }
 
   dismiss() {

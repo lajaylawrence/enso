@@ -21,7 +21,7 @@ export class UserService {
    }
   getUID() {
      return this.user.uid;
-    // return "I2PSLh0leCgw5BIXje7rpk2L4n82";
+    
   }
 
   getEmail() {
@@ -29,7 +29,11 @@ export class UserService {
   }
   getUsername() {
       return this.userName;
-    //  return "lajay";
+    
+  }
+
+  logOut(){
+    this.user = undefined;
   }
 
   // Re authenticating the user so that they can change credentials

@@ -11,9 +11,9 @@
         <span class="text1 error ion-text-center">{{error}}</span> <br />
         <ion-icon class="close" name="close" (click)="dismiss()"></ion-icon>
 
-        <!-- image display -->
-        <img class="displayImage" *ngIf="displayUrl"
-          src="https://firebasestorage.googleapis.com/v0/b/enso-4864f.appspot.com/o/{{displayUrl}}" />
+        <!-- image display --> 
+        <img class="displayImage" *ngIf="imageUrl"
+          src="{{imageUrl}}" />
 
         <!-- first input  -->
         <input type="file" id="file" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off" hidden

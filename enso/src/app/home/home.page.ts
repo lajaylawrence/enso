@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { map, finalize } from "rxjs/operators";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-home",
@@ -10,56 +11,26 @@ import { map, finalize } from "rxjs/operators";
 })
 export class HomePage {
 
- @ViewChild('input') input: ElementRef;
-  
-  url;
-  file;
-  downloadURL: Observable<string>;
 
-  constructor( private storage: AngularFireStorage) {}
-  ngOnInit() {}
+  busy=true;
 
-  
-  onFileSelected(event) {
-     this.file = event.target.files[0];
-    
+  constructor( private storage: AngularFireStorage,
+               private router: Router ) {}
+  ngOnInit() { 
+    setTimeout(() => { this.busy = false; }, 4000);
   }
 
-  selectImage(){
-    this.input.nativeElement.click();
+  goToLogin(){
+    this.router.navigate(['/login']);
   }
 
-
-
-  upload(){
-    const n = Date.now();
-    const filePath = `RoomsImages/${n}`;
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(`RoomsImages/${n}`, this.file);
-
-    task
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          this.downloadURL = fileRef.getDownloadURL();
-          this.downloadURL.subscribe((url) => {
-            if (url) {
-              this.url = url;
-            }
-            console.log(this.url);
-          });
-        })
-      )
-      .subscribe((url) => {
-        if (url) {
-          console.log(url);
-        }
-      });
-
-
+  goToRegister() {
+    this.router.navigate(['/register']);
   }
 
-
+  goToAbout() {
+    this.router.navigate(['/about']);
+  }
 
 
 }

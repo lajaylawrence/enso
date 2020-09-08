@@ -6,6 +6,7 @@ import { UserService } from '../user.service';
 import { firestore } from "firebase";
 import { Location } from "@angular/common";
 import { AngularFireStorage } from '@angular/fire/storage';
+import {BreakpointObserver, Breakpoints, BreakpointState } from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-post',
@@ -34,7 +35,8 @@ export class PostPage implements OnInit {
                private afStore: AngularFirestore,
                private user: UserService,
                private location: Location,
-               private storage: AngularFireStorage) { }
+               private storage: AngularFireStorage,
+               public breakpointObserver: BreakpointObserver) { }
 
   ngOnInit() {
      this.postId = this.route.snapshot.paramMap.get('id');
@@ -80,7 +82,7 @@ export class PostPage implements OnInit {
 
       this.heartType = field.likes.includes(this.user.getUID()) ? 'heart' : 'heart-outline';
       } else {
-        this.error = 'USER NOT FOUND';
+        this.error = 'POST NOT FOUND: May have been deleted';
         this.hide = 'hide';
         this.hide2 = "hide2";
       }
@@ -100,7 +102,16 @@ export class PostPage implements OnInit {
   }
 
   goToProfile(){
-    this.router.navigate(["/profile/" + this.authorName]);
+    
+      this.breakpointObserver
+        .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
+        .subscribe((state: BreakpointState) => {
+          if (state.matches) {
+           this.router.navigate(["/tabs/profile/" + this.authorName]);
+          } else {
+           this.router.navigate(["/profile/" + this.authorName]);
+          }
+        });    
   }
   
   goBack() {

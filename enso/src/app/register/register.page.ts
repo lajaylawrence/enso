@@ -42,12 +42,16 @@ export class RegisterPage implements OnInit {
         .forEach(doc => {
           if (this.username == doc.data().userName) {
              this.accountAve = false;
+             this.error = "Username is already taken";
+          } else if (/[A-Z]/.test(this.username)){
+            this.error = "Usernames should have no capital letters";
+            this.accountAve = false;
           }
 
-        });
-      if (!this.accountAve) {
-        this.error = "Username is already taken";
-      } else { this.register2(); }
+           });
+      if (this.accountAve) {
+          this.register2();
+      };
     });
 
     }

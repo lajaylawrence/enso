@@ -1,11 +1,32 @@
 
 // small screens
 // toolbar================================================
+.preloader {
+    position: absolute;
+    height: 100%;
+    top:0px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    background: white;
+    padding-top: 40%;
+    font-size: 30px;
+    color: #33d1ec;
+    text-shadow: 1px 1px 5px grey;
+}
+
+.preloader > img {
+    position: absolute;
+    display:block;
+    margin: 10% auto 40%;
+    height: 200px;
+    width: 100%;
+}
 .toolbar {
     background: linear-gradient(270deg, rgba(15,150,153,1) 3%, rgba(25,183,171,1) 100%);
     position: relative;
     top: 0px;
-    height: 10% !important;
+    height: 60px !important;
     box-shadow: 0px 1px 10px -5px grey;
 }
 
@@ -75,7 +96,7 @@ ion-icon.settings:hover {
     font-size: 20px;
     text-align: right;
     top: 15px;
-    right: 30%;
+    right: 15%;
     color: #016364;
     line-height: 20px;
 }
@@ -95,9 +116,11 @@ ion-icon.settings:hover {
 .edit {
  text-align: center;
  font-size: 13px;
- position: relative;
- left: 80px;
- top: -50px;
+
+ right: -40px;
+ top: -90px;
+ --background:white;
+ color: rgba(25,183,171,1);
  
 }
 
@@ -127,7 +150,7 @@ ion-icon.settings:hover {
     width: 90px;
     border: 3px dotted #009092;
     color: #009092;
-    margin: 7px;
+    
 }
 
 .post-img-add > ion-icon {
@@ -143,17 +166,36 @@ ion-icon.settings:hover {
 }
 
 @media only screen and (orientation: portrait) {
-    .hov{
-        display: none;
-    }
+  .hov{
+    position: absolute;
+    left: 70px !important;
+    top: 18px;
+    color: white;
+    font-size: 30px;
+}
+.edit{
+    position: absolute;
+}
 }
 
 // large screens =========================================
 @media only screen and (orientation: landscape) {
+              .preloader {
+
+    padding-top: 10%;
+  
+}
+
+.preloader > img {
+    
+    margin: 5% auto auto;
+    height: 400px;
+   
+}
   
     //toolbar 
 .toolbar {
-    height: 14% !important;
+    height: 20px !important;
 }
 
 ion-title {
@@ -177,6 +219,9 @@ ion-title {
     right: 20px;
 }
 
+.container1-profile{
+    zoom: 400%;
+}
 // header
 
 .container2-profile {
@@ -225,6 +270,7 @@ ion-title {
  height: 10px;
  top: 0;
  left: 0;
+ right: auto;
  
 }
 // posts
@@ -252,6 +298,15 @@ ion-title {
 
 }
 
+.hov{
+    position: absolute;
+    left: 30px;
+    top: 3px;
+    color: white;
+    font-size: 16px;
+}
+
+
 
 
 }
@@ -261,13 +316,8 @@ ion-title {
     display: none !important;
 }
 
-.hov{
-    position: relative;
-    left: 30px;
-    color: white;
-    font-size: 6px;
-}
 
 span.hov:hover{
     opacity: 0.5;
 }
+

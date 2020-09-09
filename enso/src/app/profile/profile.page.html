@@ -6,7 +6,7 @@
 
 
 
-    <ion-title class="ion-text-center">Portfolio</ion-title>
+    <ion-title class="ion-text-center">@{{username}}</ion-title>
 
     <ion-icon class="settings {{hide}}" name="cog" (click)="nav()"></ion-icon>
 
@@ -29,7 +29,7 @@
 
     <div class="header-text">
       {{firstName}} <span class="last-name">{{lastName}}</span> <br/>
-      <span class="portfolio-name">@{{username}}</span> <br/>
+      <span class="portfolio-name">{{userEmail}}</span> <br/>
       <ion-button class="edit {{hide}}" (click)="editModal()" > Edit </ion-button>
       <!-- <span class="description"> {{profileDescription}}</span> -->
     </div>

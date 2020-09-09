@@ -35,6 +35,7 @@ export class ProfilePage implements OnInit {
   firstName = "Your";
   lastName = "Name";
   username = "username";
+  userEmail;
 
   constructor(
     public modalController: ModalController,
@@ -103,10 +104,13 @@ export class ProfilePage implements OnInit {
       doc.forEach((Doc) => {
         if (this.userProfileId == Doc.userName) {
           this.userProfile = "found";
+          
+
           if(Doc.posts){
           this.posts = Doc.posts.reverse();
         }
           this.username = Doc.userName;
+          this.userEmail = Doc.email;
 
           if (Doc.profileImg) {
             this.profileImg = `https://firebasestorage.googleapis.com/v0/b/enso-4864f.appspot.com/o/${Doc.profileImg}`;
